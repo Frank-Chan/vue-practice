@@ -37,6 +37,15 @@
 					</td>
 				</tr>
 				<tr>
+					<td>擅长的技术：</td>
+					<td>
+						<template v-for="item in technicals" key="item.value" >
+							<input type="checkbox" :value="item.value" v-model="user.technical">
+							<label>{{item.name}}</label>
+						</template>
+					</td>
+				</tr>
+				<tr>
 					<td>邮件地址：</td>
 					<td>
 						<input type="text" name="email" v-model="user.email">
@@ -83,6 +92,7 @@
         		     		pwdQuestion: '',
         		     		pwdAnswer: '',
 							education:'高中',
+							technical:[],
 							annotation:'备注'
         	     	    },
 						educations:[
@@ -91,6 +101,11 @@
 							{title:"本科"},
 							{title:"硕士"},
 							{title:"博士"}
+						],
+						technicals:[
+							{name:'Java',value:0},
+							{name:'JS',value:1},
+							{name:'Python',value:2},
 						]
         	        }
         	    },
