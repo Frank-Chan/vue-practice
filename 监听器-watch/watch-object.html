@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>监听器</title>
+	</head>
+	<body>
+		<div id = "app">
+		   姓名：{{person.name}}，
+		   年龄: <input type = "text" v-model="person.age">
+		   <p v-if="info">{{info}}</p>
+		</div>
+	
+		<script src="https://unpkg.com/vue"></script>
+		<script>
+			const vm = Vue.createApp({
+    		    data() {
+    		        return {
+    		            person: {
+        		      	    name: 'lisi',
+        		      	    age: 0
+        		        },
+        		        info: ''
+    		        }
+    		    },
+    		    watch : {
+    		    	// 该回调会在person对象的属性改变时被调用，
+    		    	// 无论该属性被嵌套多深
+    		    	person: {
+    		    		handler(val, oldVal){	//监听对象变化时的函数
+    			    		if(val.age >= 18)
+    			    			this.info = '已成年';
+    			    		else
+    			    			this.info = '未成年';
+    		    		},
+    		    		deep: true,	//无论person对象的层级有多深，只要该属性的值发生变化，都会被监测到
+    		    		immediate: true //监听开始后立即执行
+    		    	}
+    		    }
+		    }).mount('#app');
+		</script>
+	</body>
+</html>
