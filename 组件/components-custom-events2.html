@@ -43,6 +43,15 @@
         		components: {
         		    PostListItem
         		},
+				computed:{
+					totalVote(){
+						let votes=0;
+						for(let book of this.posts){
+							votes+=book.vote;
+						}
+						return votes;
+					}
+				},
         		methods: {
         			// 自定义事件vote的事件处理器方法
         			handleVote(id){
@@ -60,6 +69,7 @@
         	      				:post="post" 
         	      				@vote="handleVote(post.id)"/> <!--监听自定义事件-->
         	      		</ul>
+						<p>总点赞数：{{ totalVote }}</p>
         	      	</div>`
             });
 
